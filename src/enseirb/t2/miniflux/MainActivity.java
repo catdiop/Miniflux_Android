@@ -99,6 +99,7 @@ public class MainActivity extends Activity {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();
+			System.out.println("echo je marche");
 		}
 		 
 	 }
