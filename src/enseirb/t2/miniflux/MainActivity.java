@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.projet.miniflux.R;
 
 //Classe qui gére la première activité pour se connecter au serveur 
+@SuppressWarnings("unused")
 public class MainActivity extends Activity {
 
 	@Override

@@ -55,6 +55,7 @@ public class HomeActivity extends ListActivity{
 
 		cursor = db.rawQuery("SELECT _id," + LINK + "," + WEBSITE + " FROM "+ TABLE_NAME +" ORDER BY " + WEBSITE, null);
 
+		@SuppressWarnings("deprecation")
 		ListAdapter adapter = new SimpleCursorAdapter(this,
 				R.layout.activity_home_row, cursor, new String[] {WEBSITE}, new int[] {R.id.website});
 		
@@ -70,6 +71,7 @@ public class HomeActivity extends ListActivity{
 				String website=tv.getText().toString();
 				Cursor c=db.rawQuery("select " + LINK + " from " + TABLE_NAME + " where " + WEBSITE + " LIKE ?", new String[]{website});
 				c.moveToFirst();
+				@SuppressWarnings("unused")
 				String link=c.getString(0);
 			}
 		});
@@ -86,6 +88,7 @@ public class HomeActivity extends ListActivity{
 				AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
 				builder.setTitle("Do");
 				builder.setItems(parameters, new DialogInterface.OnClickListener() {
+					@SuppressWarnings("deprecation")
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// the user clicked on colors[which]
@@ -160,6 +163,7 @@ public class HomeActivity extends ListActivity{
 	}
 
 	
+@SuppressWarnings("deprecation")
 private void processAdd(DialogWrapper wrapper) {
 		
 		ContentValues values = new ContentValues();
