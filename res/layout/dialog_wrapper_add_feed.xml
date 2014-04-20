@@ -1,0 +1,19 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    tools:context=".HomeActivity" >
+ 
+    
+    <EditText android:id="@+id/website_field"
+    android:hint="@string/website"
+    android:singleLine="true"
+    />
+    
+    <EditText android:id="@+id/link_field"
+    android:hint="@string/link"
+    android:singleLine="true"
+    />
+    
+    </TableLayout>

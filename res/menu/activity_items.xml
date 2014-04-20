@@ -1,0 +1,23 @@
+   <menu xmlns:android="http://schemas.android.com/apk/res/android"	>
+       
+       <item android:id="@+id/action_settings"
+          	 android:title="@string/action_settings"
+         	 android:showAsAction="never" />
+       
+        <item android:id="@+id/action_favorites"
+          android:icon="@drawable/ic_menu_star"
+          android:title="@string/action_favorites"
+          android:showAsAction="ifRoom" />   
+       
+       <item android:id="@+id/action_refresh"
+          android:icon="@drawable/ic_menu_refresh"
+          android:title="@string/action_refresh"
+          android:showAsAction="ifRoom" />
+          
+       
+        <item android:id="@+id/logout"
+         	 android:title="@string/logout"
+         	 android:icon="@drawable/ic_logout"
+          	 android:showAsAction="never" />
+       
+   </menu>

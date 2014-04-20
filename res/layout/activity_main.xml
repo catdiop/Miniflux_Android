@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_top_margin"
+    android:paddingBottom="@dimen/activity_bottom_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context=".MainActivity" >
+
+<TextView  android:id="@+id/text"
+		   android:text="@string/sign_in"
+		   android:layout_width="wrap_content"
+		   android:layout_height="wrap_content"
+		   android:textColor="#000000"
+		   android:layout_marginTop="20dp"
+		   />
+		   
+<Button   android:id="@+id/sign_up"	
+ 		   android:layout_width="wrap_content"
+ 		   android:layout_height="wrap_content"	
+ 		   android:text="@string/sign_up"
+ 		   android:background="#2090FF"
+ 		   android:layout_above="@+id/line"
+ 		   android:layout_alignParentRight="true"
+ 		   android:textColor="#FFFFFF"
+ 		   android:layout_marginBottom="5dp"
+ 		   android:onClick="onClick"
+ 		   />		   
+		   
+ <View
+ 		android:id="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@id/text"
+        android:layout_marginBottom="3dp"
+        android:background="@drawable/line_divider" />		   
+		   
+		   
+ <EditText android:id="@+id/username"
+ 		   android:hint="@string/username"
+ 		   android:layout_width="@dimen/edit_text_width"
+ 		   android:layout_height="wrap_content"
+ 		   android:layout_below="@id/line"></EditText>
+ 		   
+ <EditText android:id="@+id/password"
+ 		   android:hint="@string/password"
+ 		   android:layout_width="@dimen/edit_text_width"
+ 		   android:layout_height="wrap_content"
+ 		   android:layout_below="@id/username"
+ 		   android:inputType="textPassword"></EditText>		   
+ 		   
+ <Button   android:id="@+id/sign_in"	
+ 		   android:layout_width="wrap_content"
+ 		   android:layout_height="wrap_content"	
+ 		   android:text="@string/sign_in"
+ 		   android:background="#2090FF"
+ 		   android:layout_below="@id/password"
+ 		   android:layout_marginTop="5dp"
+ 		   android:textColor="#FFFFFF"
+ 		   android:onClick="onClick"
+ 		   />		   
+ 
+</RelativeLayout>
