@@ -12,6 +12,11 @@
      <string name="username">Username</string>
      <string name="password">Password</string>
      
+     <!--  DisplayMessageActivity-->
+    <!--  <string name="edit_message">Edit</string>  -->
+     <string name="subscription">Subscribe</string>
+     <string name="confirm">Confirm your password</string>
+     
      <!-- activity_home -->
       <string name="home_label">Home</string>
       <string name="text_in_case_feed_list_empty">You are subscribed to any feeds</string>

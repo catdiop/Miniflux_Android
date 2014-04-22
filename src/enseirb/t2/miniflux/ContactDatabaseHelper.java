@@ -1,5 +1,7 @@
 package enseirb.t2.miniflux;
 
+// Creer la base de donnée SQLite de l'appli
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;

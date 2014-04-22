@@ -27,6 +27,7 @@ public class HttpCall extends AsyncTask<String, Void, String> {
 		return null;
 	}
 
+	// Et l'affiche au niveau de l'appli
 	@Override
 	protected void onPostExecute(String result) {
 		// TODO Auto-generated method stub

@@ -14,13 +14,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import enseirb.t2.miniflux.SubscriptionActivity;
 import com.projet.miniflux.R;
 
 //Classe qui gére la première activité pour se connecter au serveur 
+
 @SuppressWarnings("unused")
 public class MainActivity extends Activity {
+
+	static final String EXTRA_MESSAGE = "enseirb.t2.miniflux.MESSAGE";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +42,23 @@ public class MainActivity extends Activity {
 	
 	public void onClick(View v) {
 			Intent i=null;
-		if(v.getId()==R.id.sign_in) {
+		if(v.getId()==R.id.sign_in ) {
 			i=new Intent(MainActivity.this, HomeActivity.class);
         	startActivity(i);
 		}
 		
 		if(v.getId()==R.id.sign_up) {
-			  HttpCall task=new HttpCall();
-			  task.execute(new String[] { "http://www.france3.com" });
-			  try{
-			  String s=task.get();
-			  }
-			  catch(Exception e) {
-				  System.out.println("Error: "+e.getMessage());
-			  }
+			Intent intent = new Intent(this, SubscriptionActivity.class);
+			startActivity(intent);
+			
+//			  HttpCall task=new HttpCall();
+//			  task.execute(new String[] { "http://www.france3.com" });
+//			  try{
+//			  String s=task.get();
+//			  }
+//			  catch(Exception e) {
+//				  System.out.println("Error: "+e.getMessage());
+//			  }
 		}
 	}
 	
@@ -103,5 +111,14 @@ public class MainActivity extends Activity {
 		}
 		 
 	 }
-	    
+	 /** Called when the user clicks the Send button : TEST */
+		public void sendMessage(View view) {
+			// Do some activity
+			Intent intent = new Intent(this, SubscriptionActivity.class);
+//			EditText editText = (EditText) findViewById(R.id.edit_message);
+//			String message = editText.getText().toString();
+//			intent.putExtra(EXTRA_MESSAGE, message);
+			startActivity(intent); // Code asynchrone : les lignes de commandes ne se traitent pas forcement de facon successive
+		}
+	
 }

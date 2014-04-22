@@ -18,9 +18,10 @@
         
     <activity
             android:name="enseirb.t2.miniflux.MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name" 
-            android:screenOrientation="landscape">
+             android:label="@string/app_name"   >
+            <!-- android:configChanges="keyboardHidden|orientation|screenSize" 
+            android:screenOrientation="landscape" // pour mettre sous forme de tablette-->
+           
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,11 +31,19 @@
         
     <activity
             android:name="enseirb.t2.miniflux.HomeActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/home_label" 
-            android:screenOrientation="landscape">   
+            android:label="@string/home_label" >   
      </activity>    
-            
+           
+    <!-- New activity  -->
+        <activity
+        	android:name="enseirb.t2.miniflux.SubscriptionActivity"
+        	android:label="@string/subscription"
+        	android:parentActivityName="enseirb.t2.miniflux.MainActivity" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="enseirb.t2.miniflux.MainActivity" />
+        </activity>
+        
     </application>
 
 </manifest>

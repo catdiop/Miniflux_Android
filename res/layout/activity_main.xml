@@ -27,7 +27,13 @@
  		   android:layout_marginBottom="5dp"
  		   android:onClick="onClick"
  		   />		   
-		   
+		
+<!-- <EditText android:id="@+id/edit_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="@string/edit_message" />
+  -->
  <View
  		android:id="@+id/line"
         android:layout_width="wrap_content"
