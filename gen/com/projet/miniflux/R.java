@@ -18,16 +18,18 @@ public final class R {
     }
     public static final class drawable {
         public static final int button_1=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_logout=0x7f020002;
-        public static final int ic_menu_refresh=0x7f020003;
-        public static final int ic_menu_star=0x7f020004;
-        public static final int line_divider=0x7f020005;
+        public static final int ic_input_add=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int ic_logout=0x7f020003;
+        public static final int ic_menu_add=0x7f020004;
+        public static final int ic_menu_refresh=0x7f020005;
+        public static final int ic_menu_star=0x7f020006;
+        public static final int line_divider=0x7f020007;
     }
     public static final class id {
-        public static final int action_favorites=0x7f08000d;
-        public static final int action_refresh=0x7f08000e;
-        public static final int action_settings=0x7f08000c;
+        public static final int action_favorites=0x7f08000e;
+        public static final int action_refresh=0x7f08000c;
+        public static final int action_settings=0x7f08000d;
         public static final int add_feed=0x7f08000b;
         public static final int confirm=0x7f080009;
         public static final int line=0x7f080003;
@@ -54,30 +56,30 @@ public final class R {
         public static final int activity_items=0x7f070001;
     }
     public static final class string {
-        public static final int action_favorites=0x7f050003;
-        public static final int action_refresh=0x7f050002;
+        public static final int action_favorites=0x7f050002;
+        public static final int action_refresh=0x7f05000d;
         public static final int action_settings=0x7f050001;
-        public static final int add_feed=0x7f05000d;
+        public static final int add_feed=0x7f05000c;
         public static final int app_name=0x7f050000;
         public static final int cancel=0x7f050011;
-        public static final int confirm=0x7f05000a;
+        public static final int confirm=0x7f050009;
         /**  activity_home 
          */
-        public static final int home_label=0x7f05000b;
+        public static final int home_label=0x7f05000a;
         public static final int link=0x7f05000f;
-        public static final int logout=0x7f050004;
-        public static final int password=0x7f050008;
+        public static final int logout=0x7f050003;
+        public static final int password=0x7f050007;
         public static final int register=0x7f050010;
         /**  activity_main 
          */
-        public static final int sign_in=0x7f050005;
-        public static final int sign_up=0x7f050006;
+        public static final int sign_in=0x7f050004;
+        public static final int sign_up=0x7f050005;
         /**   DisplayMessageActivity
   <string name="edit_message">Edit</string>  
          */
-        public static final int subscription=0x7f050009;
-        public static final int text_in_case_feed_list_empty=0x7f05000c;
-        public static final int username=0x7f050007;
+        public static final int subscription=0x7f050008;
+        public static final int text_in_case_feed_list_empty=0x7f05000b;
+        public static final int username=0x7f050006;
         public static final int website=0x7f05000e;
     }
     public static final class style {
