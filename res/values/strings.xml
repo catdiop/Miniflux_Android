@@ -10,7 +10,8 @@
      <string name="sign_up">Sign up</string>
      <string name="username">Username</string>
      <string name="password">Password</string>
-     
+     <string name="webview">WebView</string>
+      
      <!--  DisplayMessageActivity-->
     <!--  <string name="edit_message">Edit</string>  -->
      <string name="subscription">Subscribe</string>
