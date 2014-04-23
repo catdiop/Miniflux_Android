@@ -20,5 +20,8 @@
       <string name="link">Rss File Url</string>
       <string name="register">Register</string>
        <string name="cancel">Cancel</string>
-    
+       
+     <!-- activity items -->  
+     <string name="items_label">Items</string>
+     <string name="text_in_case_items_list_empty">No items</string>
 </resources>

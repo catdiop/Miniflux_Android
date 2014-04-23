@@ -1,5 +1,6 @@
 package enseirb.t2.miniflux;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +12,17 @@ import android.os.AsyncTask;
 
 //Classe qui fait une requete Http et renvoie la réponse
 public class HttpCall extends AsyncTask<String, Void, String> {
+	private String result;
+
+	public HttpCall(String url) {
+		this.execute(url);
+		try {
+			this.result=this.get();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 	
 	@Override
 	protected String doInBackground(String... urls) {
@@ -30,9 +42,16 @@ public class HttpCall extends AsyncTask<String, Void, String> {
 	@Override
 	protected void onPostExecute(String result) {
 		// TODO Auto-generated method stub
-		super.onPostExecute(result);
 	}
 	
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
 	private String readStream(InputStream in) {
     	BufferedReader reader = null;
     	try {

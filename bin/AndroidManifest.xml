@@ -34,6 +34,13 @@
             android:label="@string/home_label" 
             android:screenOrientation="landscape">   
      </activity>    
+     
+     <activity
+            android:name="enseirb.t2.miniflux.ItemActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/home_label" 
+            android:screenOrientation="landscape">   
+     </activity>   
             
     </application>
 

@@ -23,24 +23,7 @@ public class Flux {
 		String fluxInJson=null;
 		String restLink=null;
 		//faire une requête HttpCall pour retrouver le flux
-		HttpCall task=new HttpCall();
-		task.execute(new String[] { restLink });
-		try{
-			fluxInJson=task.get();
-			//mapping du json reçu en liste d'items
-			ObjectMapper om=new ObjectMapper();
-			om.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-			JsonFactory f=new JsonFactory();
-			JsonParser jp=f.createJsonParser(fluxInJson);
-			jp.nextToken();
-			while (jp.nextToken()==JsonToken.START_OBJECT) {
-				Item i=om.readValue(fluxInJson, Item.class);
-				this.items.add(i);
-			}
-		}
-		catch(Exception e) {
-			System.out.println("Error: "+e.getMessage());
-		}
+		
 	}
 
 	public String getLink() {

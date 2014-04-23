@@ -42,14 +42,7 @@ public class MainActivity extends Activity {
 		}
 		
 		if(v.getId()==R.id.sign_up) {
-			  HttpCall task=new HttpCall();
-			  task.execute(new String[] { "http://www.france3.com" });
-			  try{
-			  String s=task.get();
-			  }
-			  catch(Exception e) {
-				  System.out.println("Error: "+e.getMessage());
-			  }
+			  
 		}
 	}
 	

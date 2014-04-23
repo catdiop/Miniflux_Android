@@ -71,4 +71,13 @@ public class Item {
 	public Date getPublishedDate() {
 		return this.publishedDate;
 	}
+	
+	public String toString() {
+		String s=new String("");
+		s=s.concat("link: "+this.linkFlux+"\n");
+		s=s.concat("Description: "+this.description+"\n");
+		s=s.concat("title: "+this.title+"\n");
+		s=s.concat("uri: "+this.uri+"\n");
+		return s;
+	}
 }
