@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,6 +44,18 @@ public class HomeActivity extends ListActivity{
 	static View view;
 	private SQLiteDatabase db = null;
 	private Cursor cursor = null;
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		case R.id.add_feed:add();
+		break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +64,7 @@ public class HomeActivity extends ListActivity{
 		//Hide the status Bar
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_home);
 
 		db = (new ContactDatabaseHelper(this)).getWritableDatabase();
@@ -126,16 +139,6 @@ public class HomeActivity extends ListActivity{
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.activity_home, menu);
 		return super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id=item.getItemId();
-
-		switch(id) {
-		case R.id.add_feed:add();
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	//add new feed

@@ -14,6 +14,10 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -21,6 +25,17 @@ import android.widget.Toast;
 import com.projet.miniflux.R;
 
 public class ItemActivity extends Activity {
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+
 	private ListView listItems; 
 	private Context context;
 
@@ -32,7 +47,8 @@ public class ItemActivity extends Activity {
 		//Hide the status Bar
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		String link=getIntent().getExtras().getString("link");
 		Uri.Builder builder=new Uri.Builder();
 		builder.scheme("http")
@@ -49,6 +65,14 @@ public class ItemActivity extends Activity {
 	}
 
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu items for use in the action bar
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.activity_items, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+	
 	private class HttpCall extends AsyncTask<String, Void, String> {
 		private ProgressDialog progressDialog;
 		private Activity activity;

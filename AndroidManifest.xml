@@ -32,14 +32,30 @@
             android:name="enseirb.t2.miniflux.HomeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/home_label" 
-            android:screenOrientation="landscape">   
+            android:screenOrientation="landscape"> 
+             <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="enseirb.t2.miniflux.MainActivity" />   
      </activity>    
      
      <activity
             android:name="enseirb.t2.miniflux.ItemActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/home_label" 
+            android:label="@string/items_label" 
             android:screenOrientation="landscape">   
+             <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="enseirb.t2.miniflux.HomeActivity" /> 
+     </activity>   
+     
+      <activity
+            android:name="enseirb.t2.miniflux.SubscriptionActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/home_label" 
+            android:screenOrientation="landscape"> 
+             <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="enseirb.t2.miniflux.MainActivity" />  
      </activity>   
             
     </application>
