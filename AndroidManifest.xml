@@ -18,9 +18,9 @@
         
     <activity
             android:name="enseirb.t2.miniflux.MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name" 
-            android:screenOrientation="landscape">
+            android:label="@string/app_name" >
+            <!-- android:screenOrientation="landscape"
+             android:configChanges="keyboardHidden|orientation|screenSize" -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,9 +30,7 @@
         
     <activity
             android:name="enseirb.t2.miniflux.HomeActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/home_label" 
-            android:screenOrientation="landscape"> 
+            android:label="@string/home_label" > 
              <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="enseirb.t2.miniflux.MainActivity" />   
@@ -40,9 +38,7 @@
      
      <activity
             android:name="enseirb.t2.miniflux.ItemActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/items_label" 
-            android:screenOrientation="landscape">   
+            android:label="@string/items_label" >   
              <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="enseirb.t2.miniflux.HomeActivity" /> 
