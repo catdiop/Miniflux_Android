@@ -32,6 +32,7 @@ public class ItemActivity extends Activity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 
