@@ -14,6 +14,7 @@ import com.projet.miniflux.R;
 public class ListItemAdapter extends ArrayAdapter<Item>{
 	private LayoutInflater inflater;
 	private List<Item> items;
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
@@ -31,9 +32,11 @@ public class ListItemAdapter extends ArrayAdapter<Item>{
 		}
 		return row;
 	}
+	
 	public ListItemAdapter(Context context, List<Item> items) {
 		super(context, R.layout.activity_item_row, items);
 		this.inflater = LayoutInflater.from(context);
 		this.items = items;
 	}
+	
 }

@@ -46,9 +46,7 @@
      
       <activity
             android:name="enseirb.t2.miniflux.SubscriptionActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/home_label" 
-            android:screenOrientation="landscape"> 
+            android:label="@string/home_label" > 
              <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="enseirb.t2.miniflux.MainActivity" />  

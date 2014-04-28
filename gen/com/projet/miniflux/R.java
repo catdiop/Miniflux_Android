@@ -23,7 +23,8 @@ public final class R {
         public static final int ic_logout=0x7f020003;
         public static final int ic_menu_refresh=0x7f020004;
         public static final int ic_menu_star=0x7f020005;
-        public static final int line_divider=0x7f020006;
+        public static final int ic_menu_star_yellow=0x7f020006;
+        public static final int line_divider=0x7f020007;
     }
     public static final class id {
         public static final int action_favorites=0x7f080011;
