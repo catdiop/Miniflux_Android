@@ -27,8 +27,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.projet.miniflux.R;
 
 
@@ -71,6 +69,7 @@ public class HomeActivity extends ListActivity{
 
 		cursor = db.rawQuery("SELECT _id," + LINK + "," + WEBSITE + " FROM "+ TABLE_NAME +" ORDER BY " + WEBSITE, null);
 
+		@SuppressWarnings("deprecation")
 		ListAdapter adapter = new SimpleCursorAdapter(this,
 				R.layout.activity_home_row, cursor, new String[] {WEBSITE}, new int[] {R.id.website});
 
@@ -105,6 +104,7 @@ public class HomeActivity extends ListActivity{
 				AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
 				builder.setTitle("Do");
 				builder.setItems(parameters, new DialogInterface.OnClickListener() {
+					@SuppressWarnings("deprecation")
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// the user clicked on colors[which]
@@ -169,6 +169,7 @@ public class HomeActivity extends ListActivity{
 	}
 
 
+	@SuppressWarnings("deprecation")
 	private void processAdd(DialogWrapper wrapper) {
 
 		ContentValues values = new ContentValues();

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.projet.miniflux"
     android:versionCode="1"
@@ -79,3 +80,62 @@
     </application>
 
 </manifest>
+=======
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.projet.miniflux"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="18" />
+        
+    <uses-permission android:name="android.permission.INTERNET" />    
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+    <activity
+            android:name="enseirb.t2.miniflux.MainActivity"
+            android:label="@string/app_name" >
+            <!-- android:screenOrientation="landscape"
+             android:configChanges="keyboardHidden|orientation|screenSize" -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+    <activity
+            android:name="enseirb.t2.miniflux.HomeActivity"
+            android:label="@string/home_label" > 
+             <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="enseirb.t2.miniflux.MainActivity" />   
+     </activity>    
+     
+     <activity
+            android:name="enseirb.t2.miniflux.ItemActivity"
+            android:label="@string/items_label" >   
+             <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="enseirb.t2.miniflux.HomeActivity" /> 
+     </activity>   
+     
+      <activity
+            android:name="enseirb.t2.miniflux.SubscriptionActivity"
+            android:label="@string/home_label" > 
+             <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="enseirb.t2.miniflux.MainActivity" />  
+     </activity>   
+            
+    </application>
+
+</manifest>
+>>>>>>> 84d3f384b0fd531574ea5943cde47e1b88bc9544
