@@ -12,6 +12,16 @@ import android.widget.TextView;
 import com.projet.miniflux.R;
 
 public class ListItemAdapter extends ArrayAdapter<Item>{
+	@Override
+	public boolean areAllItemsEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean isEnabled(int position) {
+		// TODO Auto-generated method stub
+		return super.isEnabled(position);
+	}
 	private LayoutInflater inflater;
 	private List<Item> items;
 	@Override

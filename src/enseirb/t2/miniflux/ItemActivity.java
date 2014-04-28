@@ -11,6 +11,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,8 +19,12 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projet.miniflux.R;
@@ -48,7 +53,7 @@ public class ItemActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		String link=getIntent().getExtras().getString("link");
 		Uri.Builder builder=new Uri.Builder();
 		builder.scheme("http")
@@ -58,9 +63,22 @@ public class ItemActivity extends Activity {
 		.appendPath("flux")
 		.appendPath("get")
 		.appendQueryParameter("link", link);
-		
-		Toast.makeText(ItemActivity.this, builder.build().toString() , Toast.LENGTH_LONG).show();
-		
+
+		ListView list = (ListView)findViewById(R.id.list_items);
+		list.setOnItemClickListener( new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+					long arg3) {
+				// TODO Auto-generated method stub
+				
+				TextView tv=(TextView)arg1.findViewById(R.id.uri);
+				Intent intent=new Intent(ItemActivity.this, WebPageActivity.class);
+				intent.putExtra("link", tv.getText());
+				startActivity(intent);
+			}
+		});
+
 		new HttpCall(this).execute(builder.build().toString());
 	}
 
@@ -72,17 +90,17 @@ public class ItemActivity extends Activity {
 		inflater.inflate(R.menu.activity_items, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	private class HttpCall extends AsyncTask<String, Void, String> {
 		private ProgressDialog progressDialog;
 		private Activity activity;
-		
+
 		public HttpCall(Activity activity) {
 			this.activity=activity;
 			context=activity;
 			progressDialog=new ProgressDialog(context);
 		}
-		
+
 		@Override
 		protected String doInBackground(String... urls) {
 			// TODO Auto-generated method stub
