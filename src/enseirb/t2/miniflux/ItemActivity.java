@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package enseirb.t2.miniflux;
 
 import java.io.BufferedReader;
@@ -31,19 +30,22 @@ import android.widget.Toast;
 import com.projet.miniflux.R;
 
 public class ItemActivity extends Activity {
+	
+	private ListView listItems; 
+	private Context context;
+	private List<Item> itemsToShow;
+	ListItemAdapter adapter;
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
+			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-
-	private ListView listItems; 
-	private Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +95,8 @@ public class ItemActivity extends Activity {
 	}
 
 	private class HttpCall extends AsyncTask<String, Void, String> {
-		private ProgressDialog progressDialog;
-		private Activity activity;
+		protected ProgressDialog progressDialog;
+		protected Activity activity;
 
 		public HttpCall(Activity activity) {
 			this.activity=activity;
@@ -124,33 +126,9 @@ public class ItemActivity extends Activity {
 				progressDialog.dismiss();
 			}
 			listItems=(ListView)findViewById(R.id.list_items);
-			List<Item> items=ManipulateJsonData.getItems(result);
-			Toast.makeText(ItemActivity.this, items.get(0).toString(), Toast.LENGTH_LONG).show();
-			listItems.setAdapter(new ListItemAdapter(ItemActivity.this, items));
-		}
-
-		private String readStream(InputStream in) {
-			BufferedReader reader = null;
-			try {
-				reader = new BufferedReader(new InputStreamReader(in));
-				String line = "";
-				String s="";
-				while ((line = reader.readLine()) != null) {
-					s=s.concat(line);
-				}
-				return s;
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				if (reader != null) {
-					try {
-						reader.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-			return null;
+			itemsToShow=ManipulateJsonData.getItems(result);
+			adapter=new ListItemAdapter(ItemActivity.this, itemsToShow);
+			listItems.setAdapter(adapter);
 		}
 
 		@Override
@@ -159,110 +137,14 @@ public class ItemActivity extends Activity {
 			this.progressDialog.setMessage("Wait please...");
 			this.progressDialog.show();
 		} 
-	}
-}
-=======
-package enseirb.t2.miniflux;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.List;
-
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.WindowManager;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import com.projet.miniflux.R;
-
-public class ItemActivity extends Activity {
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		
-		return super.onOptionsItemSelected(item);
-	}
-
-
-	private ListView listItems; 
-	private Context context;
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_item);
-		//Hide the status Bar
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
-		String link=getIntent().getExtras().getString("link");
-		Uri.Builder builder=new Uri.Builder();
-		builder.scheme("http")
-		.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
-		.appendPath("Miniflux")
-		.appendPath("rest")
-		.appendPath("flux")
-		.appendPath("get")
-		.appendQueryParameter("link", link);
-		
-		Toast.makeText(ItemActivity.this, builder.build().toString() , Toast.LENGTH_LONG).show();
-		
-		new HttpCall(this).execute(builder.build().toString());
-	}
-
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu items for use in the action bar
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.activity_items, menu);
-		return super.onCreateOptionsMenu(menu);
 	}
 	
-	private class HttpCall extends AsyncTask<String, Void, String> {
-		private ProgressDialog progressDialog;
-		private Activity activity;
+	private class HttpCall1 extends HttpCall {
 		
-		public HttpCall(Activity activity) {
-			this.activity=activity;
-			context=activity;
-			progressDialog=new ProgressDialog(context);
+		public HttpCall1(Activity activity) {
+			super(activity);
 		}
 		
-		@Override
-		protected String doInBackground(String... urls) {
-			// TODO Auto-generated method stub
-			try {
-				URL url=new URL(urls[0]);
-				HttpURLConnection con = (HttpURLConnection) url
-						.openConnection();
-				String s=readStream(con.getInputStream());
-				return s;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
-
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
@@ -271,40 +153,52 @@ public class ItemActivity extends Activity {
 			}
 			listItems=(ListView)findViewById(R.id.list_items);
 			List<Item> items=ManipulateJsonData.getItems(result);
-			Toast.makeText(ItemActivity.this, items.get(0).toString(), Toast.LENGTH_LONG).show();
-			listItems.setAdapter(new ListItemAdapter(ItemActivity.this, items));
+			itemsToShow.addAll(items);
+			adapter=new ListItemAdapter(ItemActivity.this, itemsToShow);
+			listItems.setAdapter(adapter);
+			adapter.notifyDataSetChanged();
+			
 		}
-
-		private String readStream(InputStream in) {
-			BufferedReader reader = null;
-			try {
-				reader = new BufferedReader(new InputStreamReader(in));
-				String line = "";
-				String s="";
-				while ((line = reader.readLine()) != null) {
-					s=s.concat(line);
-				}
-				return s;
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				if (reader != null) {
-					try {
-						reader.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+	}
+	
+	private String readStream(InputStream in) {
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new InputStreamReader(in));
+			String line = "";
+			String s="";
+			while ((line = reader.readLine()) != null) {
+				s=s.concat(line);
+			}
+			return s;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
-			return null;
 		}
+		return null;
+	}
+	
+	public void onClick(View v) {
+		if(v.getId()==R.id.action_refresh) {
+			String link=getIntent().getExtras().getString("link");
+			Uri.Builder builder=new Uri.Builder();
+			builder.scheme("http")
+			.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
+			.appendPath("Miniflux")
+			.appendPath("rest")
+			.appendPath("flux")
+			.appendPath("refresh")
+			.appendQueryParameter("link", link);
+			
+			new HttpCall1(this).execute(builder.build().toString());
 
-		@Override
-		protected void onPreExecute() {
-			// TODO Auto-generated method stub
-			this.progressDialog.setMessage("Wait please...");
-			this.progressDialog.show();
-		} 
+		}
 	}
 }
->>>>>>> 84d3f384b0fd531574ea5943cde47e1b88bc9544

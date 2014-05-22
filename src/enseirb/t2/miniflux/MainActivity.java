@@ -44,21 +44,21 @@ import com.projet.miniflux.R;
 
 public class MainActivity extends Activity {
 
-	private StringBuffer stringBuffer = new StringBuffer("");
-	private BufferedReader bufferedReader  = null ;
-
-	private static final String url = "http://cdiop.rmorpheus.enseirb.fr/Miniflux/rest/flux/toto";
-
-	public static ProgressDialog progressDialog; // pour la gestion d'erreur
-
-	private EditText UserEditText;
-	private EditText PassEditText;
-
-	private static final String LOG_TAG = "Log : ";
-	private final String mimeType = "text/html";
-	private final String encoding = "utf-8";
-	private String pageWeb; 
-	private WebView webView;
+//	private StringBuffer stringBuffer = new StringBuffer("");
+//	private BufferedReader bufferedReader  = null ;
+//
+//	private static final String url = "http://ssoubnguemtchueng.rmorpheus.enseirb.fr/Miniflux/rest/flux/toto";
+//
+//	public static ProgressDialog progressDialog; // pour la gestion d'erreur
+//
+//	private EditText UserEditText;
+//	private EditText PassEditText;
+//
+//	private static final String LOG_TAG = "Log : ";
+//	private final String mimeType = "text/html";
+//	private final String encoding = "utf-8";
+//	private String pageWeb; 
+//	private WebView webView;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
@@ -73,64 +73,64 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 //		/*ADDED FOR AUTHENTIFICATION*/
-
-		//initialisation de la progress bar
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setMessage("Attendez...");
-		progressDialog.setIndeterminate(true);
-		progressDialog.setCancelable(false);
-
-		webView = (WebView) findViewById(R.id.website);
-
-		// Récupération des éléments de la vue définis dans le xml
-		UserEditText = (EditText)findViewById(R.id.username);
-		PassEditText = (EditText)findViewById(R.id.password);
-
-		Button button =(Button)findViewById(R.id.sign_in);
-		button.setOnClickListener(new View.OnClickListener() {
-			@SuppressLint("SetJavaScriptEnabled")
-			public void onClick(View v) {
-
-				//				new Thread(){
-				//					public void run(){
-				int usersize = UserEditText.getText().length();
-				int passsize = PassEditText.getText().length();
-
-				//si les deux champs sont remplis
-				if(usersize>0 && passsize>0)
-				{
-					progressDialog.show();
-
-					String login = UserEditText.getText().toString();
-					String pass = PassEditText.getText().toString();
-
-					//on appelle la fonction dologin qui va communiquer av le serveur
-					try {
-						pageWeb = doLogin(login,pass);
-					} catch (ClientProtocolException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					webView.getSettings().setJavaScriptEnabled(true);
-					webView.loadDataWithBaseURL("fake://not/needed", pageWeb, mimeType, encoding, "");
-					webView.getSettings().setJavaScriptEnabled(true);
-				}
-				else
-					createDialog("Erreur","Entrez votre login et mot de passe");
-			}
-			//}.start();
-		}//}
-				);
-
-		//le bouton logout pour sortir de l'application
-//		Button button1 =(Button)findViewById(R.id.logout);
-//		button1.setOnClickListener(new View.OnClickListener() {
+//
+//		//initialisation de la progress bar
+//		progressDialog = new ProgressDialog(this);
+//		progressDialog.setMessage("Attendez...");
+//		progressDialog.setIndeterminate(true);
+//		progressDialog.setCancelable(false);
+//
+//		webView = (WebView) findViewById(R.id.website);
+//
+//		// Récupération des éléments de la vue définis dans le xml
+//		UserEditText = (EditText)findViewById(R.id.username);
+//		PassEditText = (EditText)findViewById(R.id.password);
+//
+//		Button button =(Button)findViewById(R.id.sign_in);
+//		button.setOnClickListener(new View.OnClickListener() {
+//			@SuppressLint("SetJavaScriptEnabled")
 //			public void onClick(View v) {
-//				quit(false,null);	
+//
+//				//				new Thread(){
+//				//					public void run(){
+//				int usersize = UserEditText.getText().length();
+//				int passsize = PassEditText.getText().length();
+//
+//				//si les deux champs sont remplis
+//				if(usersize>0 && passsize>0)
+//				{
+//					progressDialog.show();
+//
+//					String login = UserEditText.getText().toString();
+//					String pass = PassEditText.getText().toString();
+//
+//					//on appelle la fonction dologin qui va communiquer av le serveur
+//					try {
+//						pageWeb = doLogin(login,pass);
+//					} catch (ClientProtocolException e) {
+//						e.printStackTrace();
+//					} catch (IOException e) {
+//						e.printStackTrace();
+//					}
+//					webView.getSettings().setJavaScriptEnabled(true);
+//					webView.loadDataWithBaseURL("fake://not/needed", pageWeb, mimeType, encoding, "");
+//					webView.getSettings().setJavaScriptEnabled(true);
+//				}
+//				else
+//					createDialog("Erreur","Entrez votre login et mot de passe");
 //			}
-//		}); 
-
+//			//}.start();
+//		}//}
+//				);
+//
+//		//le bouton logout pour sortir de l'application
+////		Button button1 =(Button)findViewById(R.id.logout);
+////		button1.setOnClickListener(new View.OnClickListener() {
+////			public void onClick(View v) {
+////				quit(false,null);	
+////			}
+////		}); 
+//
 
 	}
 
@@ -199,78 +199,78 @@ public class MainActivity extends Activity {
 
 	}
 
-	// Other methods add by Sandrine
-	//---------------------------------------------------------------------------------------------------------------
-
-	private void quit(boolean b, Intent i) {
-		//on envoie un résultat qui va permettre de quitter l'application
-		setResult((b)? Activity.RESULT_OK : Activity.RESULT_CANCELED, i);
-		finish();
-	}
-
-	//---------------------------------------------------------------------------------------------------------------
-
-	private void createDialog(String title, String text) {
-		AlertDialog ad = new AlertDialog.Builder(this)
-		.setPositiveButton("OK", null).setTitle(title).setMessage(text)
-		.create();
-		ad.show();
-	}
-	//---------------------------------------------------------------------------------------------------------------
-
-	private String doLogin(final String login, final String pass)throws ClientProtocolException, IOException {
-
-		Thread t = new Thread(){
-			public void run(){
-				Looper.prepare();					
-				try{
-
-					//on se connecte au serveur afin d'envoyer le login et le passwd
-					HttpClient client = new DefaultHttpClient();
-					HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-
-					//la requete qui envoie les paramètres
-					HttpPost post = new HttpPost(url);
-
-					//on crée la liste qui contient les paramètres
-					List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-					//on rajoute les paramètres à la liste
-					nvps.add(new BasicNameValuePair("username", login));
-					nvps.add(new BasicNameValuePair("password", pass));
-
-					post.setHeader("Content-Type", "application/x-www-form-urlencoded");
-
-					//joindre les paramètre à la requete
-					post.setEntity(new UrlEncodedFormEntity(nvps));
-
-					//Execution du client HTTP avec le HttpPost
-					HttpResponse response = client.execute(post);
-
-					//On récupère la réponse dans un InputStream
-					InputStream is = response.getEntity().getContent();
+//	// Other methods add by Sandrine
+//	//---------------------------------------------------------------------------------------------------------------
+//
+//	private void quit(boolean b, Intent i) {
+//		//on envoie un résultat qui va permettre de quitter l'application
+//		setResult((b)? Activity.RESULT_OK : Activity.RESULT_CANCELED, i);
+//		finish();
+//	}
+//
+//	//---------------------------------------------------------------------------------------------------------------
+//
+//	private void createDialog(String title, String text) {
+//		AlertDialog ad = new AlertDialog.Builder(this)
+//		.setPositiveButton("OK", null).setTitle(title).setMessage(text)
+//		.create();
+//		ad.show();
+//	}
+//	//---------------------------------------------------------------------------------------------------------------
+//
+//	private String doLogin(final String login, final String pass)throws ClientProtocolException, IOException {
+//
+//		Thread t = new Thread(){
+//			public void run(){
+//				Looper.prepare();					
+//				try{
+//
+//					//on se connecte au serveur afin d'envoyer le login et le passwd
+//					HttpClient client = new DefaultHttpClient();
+//					HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
+//
+//					//la requete qui envoie les paramètres
+//					HttpPost post = new HttpPost(url);
+//
+//					//on crée la liste qui contient les paramètres
+//					List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+//					//on rajoute les paramètres à la liste
+//					nvps.add(new BasicNameValuePair("username", login));
+//					nvps.add(new BasicNameValuePair("password", pass));
+//
+//					post.setHeader("Content-Type", "application/x-www-form-urlencoded");
+//
+//					//joindre les paramètre à la requete
+//					post.setEntity(new UrlEncodedFormEntity(nvps));
+//
+//					//Execution du client HTTP avec le HttpPost
+//					HttpResponse response = client.execute(post);
+//
+//					//On récupère la réponse dans un InputStream
+//					InputStream is = response.getEntity().getContent();
 //					Log.d("myapp", "response " + response.getEntity().getContent() ); // crée des erreurs
-
-					//On crée un bufferedReader pour pouvoir stocker le résultat dans un string
-					bufferedReader  = new BufferedReader(new InputStreamReader(is));
-
-					//On lit ligne à ligne le bufferedReader pour le stocker dans le stringBuffer
-					String ligneCodeHTML = bufferedReader.readLine();
-					while (ligneCodeHTML != null){
-						stringBuffer.append(ligneCodeHTML);
-						stringBuffer.append("\n");
-						ligneCodeHTML = bufferedReader.readLine();
-					}  
-				}
-				catch (Exception e) 
-				{ 
-					progressDialog.dismiss();
-					createDialog("Erreur", "impossible d'établir la connexion");
-				}
-				Looper.loop();	
-			}		
-		};
-		t.start();
-		return stringBuffer.toString();
-	}
+//
+//					//On crée un bufferedReader pour pouvoir stocker le résultat dans un string
+//					bufferedReader  = new BufferedReader(new InputStreamReader(is));
+//
+//					//On lit ligne à ligne le bufferedReader pour le stocker dans le stringBuffer
+//					String ligneCodeHTML = bufferedReader.readLine();
+//					while (ligneCodeHTML != null){
+//						stringBuffer.append(ligneCodeHTML);
+//						stringBuffer.append("\n");
+//						ligneCodeHTML = bufferedReader.readLine();
+//					}  
+//				}
+//				catch (Exception e) 
+//				{ 
+//					progressDialog.dismiss();
+//					createDialog("Erreur", "impossible d'établir la connexion");
+//				}
+//				Looper.loop();	
+//			}		
+//		};
+//		t.start();
+//		return stringBuffer.toString();
+//	}
 
 }
