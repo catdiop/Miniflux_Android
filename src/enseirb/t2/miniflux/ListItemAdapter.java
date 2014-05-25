@@ -3,6 +3,8 @@ package enseirb.t2.miniflux;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +40,10 @@ public class ListItemAdapter extends ArrayAdapter<Item>{
 		
 		TextView uri=(TextView)row.findViewById(R.id.uri);
 		uri.setText(item.getUri());
+		
+		if(item.isRead()==true) {
+			title.setTypeface(Typeface.SERIF, Typeface.ITALIC);
+			}
 		}
 		return row;
 	}

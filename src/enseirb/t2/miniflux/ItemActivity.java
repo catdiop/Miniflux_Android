@@ -25,23 +25,23 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.projet.miniflux.R;
 
 public class ItemActivity extends Activity {
-	
+
 	private ListView listItems; 
 	private Context context;
 	private List<Item> itemsToShow;
-	ListItemAdapter adapter;
-	
+	private ListItemAdapter adapter;
+	private String link;
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
-			
+
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -57,7 +57,7 @@ public class ItemActivity extends Activity {
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
-		String link=getIntent().getExtras().getString("link");
+		link=getIntent().getExtras().getString("link");
 		Uri.Builder builder=new Uri.Builder();
 		builder.scheme("http")
 		.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
@@ -74,15 +74,27 @@ public class ItemActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long arg3) {
 				// TODO Auto-generated method stub
-				
+
 				TextView tv=(TextView)arg1.findViewById(R.id.uri);
+				TextView title=(TextView)arg1.findViewById(R.id.title);
+				Uri.Builder builder1=new Uri.Builder();
+				builder1.scheme("http")
+				.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
+				.appendPath("Miniflux")
+				.appendPath("rest")
+				.appendPath("item")
+				.appendPath("read")
+				.appendQueryParameter("link", link)
+				.appendQueryParameter("title", title.getText().toString());
+				new HttpCall2(ItemActivity.this).execute(builder1.build().toString());
 				Intent intent=new Intent(ItemActivity.this, WebPageActivity.class);
 				intent.putExtra("link", tv.getText());
-				startActivity(intent);
+				//startActivity(intent);
 			}
 		});
 
 		new HttpCall(this).execute(builder.build().toString());
+
 	}
 
 
@@ -138,13 +150,13 @@ public class ItemActivity extends Activity {
 			this.progressDialog.show();
 		} 
 	}
-	
+
 	private class HttpCall1 extends HttpCall {
-		
+
 		public HttpCall1(Activity activity) {
 			super(activity);
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
@@ -157,10 +169,43 @@ public class ItemActivity extends Activity {
 			adapter=new ListItemAdapter(ItemActivity.this, itemsToShow);
 			listItems.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
-			
+
 		}
 	}
-	
+
+	private class HttpCall2 extends HttpCall {
+
+		public HttpCall2(Activity activity) {
+			super(activity);
+		}
+
+		@Override
+		protected String doInBackground(String... urls) {
+			// TODO Auto-generated method stub
+			try {
+				URL url=new URL(urls[0]);
+				HttpURLConnection con = (HttpURLConnection) url
+						.openConnection();
+				String s=readStream(con.getInputStream());
+				System.out.println(s);
+				return s;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+		}
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+		} 
+	}
+
 	private String readStream(InputStream in) {
 		BufferedReader reader = null;
 		try {
@@ -184,7 +229,7 @@ public class ItemActivity extends Activity {
 		}
 		return null;
 	}
-	
+
 	public void onClick(View v) {
 		if(v.getId()==R.id.action_refresh) {
 			String link=getIntent().getExtras().getString("link");
@@ -196,7 +241,7 @@ public class ItemActivity extends Activity {
 			.appendPath("flux")
 			.appendPath("refresh")
 			.appendQueryParameter("link", link);
-			
+
 			new HttpCall1(this).execute(builder.build().toString());
 
 		}

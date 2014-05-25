@@ -10,6 +10,7 @@ public class Item {
 	private String description;
 	private String uri;
 	private Date publishedDate;
+	private boolean read;
 	
 	public Item() {
 		this.linkFlux=null;
@@ -17,6 +18,7 @@ public class Item {
 		this.description=null;
 		this.uri=null;
 		this.publishedDate=null;
+		this.read=false;
 	}
 	
 	public Item(String linkFlux, String title, String description, String uri, Date publishedDate) {
@@ -25,9 +27,18 @@ public class Item {
 		this.description=description;
 		this.uri=uri;
 		this.publishedDate=publishedDate;
+		this.read=false;
 	}
 	
 	
+	public boolean isRead() {
+		return read;
+	}
+
+	public void setRead(boolean read) {
+		this.read = read;
+	}
+
 	public String getLinkFlux() {
 		return linkFlux;
 	}
