@@ -10,6 +10,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 	static final String LINK="link";
 	static final String WEBSITE="website";
 	static final String TYPE="type";
+	static final String FAVORITE="favorite";
 	
 	public static final String TABLE_CREATE="CREATE TABLE allFluxName (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 			LINK +" TEXT NOT NULL, " +

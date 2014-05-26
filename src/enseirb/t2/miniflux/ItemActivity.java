@@ -9,8 +9,10 @@ import java.net.URL;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +39,7 @@ public class ItemActivity extends Activity {
 	private List<Item> itemsToShow;
 	private ListItemAdapter adapter;
 	private String link;
+	static View view;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -45,16 +49,15 @@ public class ItemActivity extends Activity {
 			break;
 		case R.id.action_favorites:
 			item.setIcon(R.drawable.ic_menu_star_yellow);
-			link=getIntent().getExtras().getString("link");
 			Uri.Builder builder1=new Uri.Builder();
 			builder1.scheme("http")
 			.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
 			.appendPath("Miniflux")
 			.appendPath("rest")
 			.appendPath("flux")
-			.appendPath("favorite")
-			.appendQueryParameter("link", link);
-			new HttpCall2(ItemActivity.this).execute(builder1.build().toString());
+			.appendPath("favorites")
+			.appendQueryParameter("link", getIntent().getExtras().getString("link"));
+			new HttpCall3(ItemActivity.this).execute(builder1.build().toString());
 			return true;
 		case R.id.action_refresh:
 			refresh();
@@ -111,6 +114,39 @@ public class ItemActivity extends Activity {
 			}
 		});
 
+		list.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				// TODO Auto-generated method stub
+				view=arg1;
+				CharSequence parameters[] = new CharSequence[] {
+				"Favorite" };
+				AlertDialog.Builder builder = new AlertDialog.Builder(ItemActivity.this);
+				builder.setTitle("Set");
+				builder.setItems(parameters, new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// the user clicked on colors[which]
+
+						switch (which) {
+						case 0:
+							TextView tv=(TextView)view.findViewById(R.id.title);
+							setFavorite(getIntent().getExtras().getString("link"), tv.getText().toString());
+							break;
+						case 1 : {
+							break;
+						}
+						}
+					}
+				});
+				builder.show();
+				return false;
+			}
+
+		});
+		
 		new HttpCall(this).execute(builder.build().toString());
 
 	}
@@ -224,6 +260,29 @@ public class ItemActivity extends Activity {
 		} 
 	}
 
+	private class HttpCall3 extends HttpCall {
+
+		public HttpCall3(Activity activity) {
+			super(activity);
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			// TODO Auto-generated method stub
+			if(progressDialog.isShowing()) {
+				progressDialog.dismiss();
+			}
+			listItems=(ListView)findViewById(R.id.list_items);
+			List<Item> items=ManipulateJsonData.getItems(result);
+			itemsToShow=items;
+			adapter=new ListItemAdapter(ItemActivity.this, itemsToShow);
+			listItems.setAdapter(adapter);
+			adapter.notifyDataSetChanged();
+
+		}
+	}
+
+	
 	private String readStream(InputStream in) {
 		BufferedReader reader = null;
 		try {
@@ -261,4 +320,18 @@ public class ItemActivity extends Activity {
 
 			new HttpCall1(this).execute(builder.build().toString());
 	}
+	
+	public void setFavorite(String link, String title) {
+		Uri.Builder builder=new Uri.Builder();
+		builder.scheme("http")
+		.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
+		.appendPath("Miniflux")
+		.appendPath("rest")
+		.appendPath("item")
+		.appendPath("favorite")
+		.appendQueryParameter("link", link)
+		.appendQueryParameter("title", title);
+
+		new HttpCall1(this).execute(builder.build().toString());
+}
 }
