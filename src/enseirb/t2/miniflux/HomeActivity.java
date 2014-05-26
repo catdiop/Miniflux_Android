@@ -42,6 +42,7 @@ public class HomeActivity extends ListActivity{
 	static final String KEY="_id";
 	static final String LINK = "link";
 	static final String WEBSITE = "website";
+	static final String TYPE="type";
 	static View view;
 	private SQLiteDatabase db = null;
 	private Cursor cursor = null;
@@ -68,9 +69,9 @@ public class HomeActivity extends ListActivity{
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_home);
 
-		db = (new ContactDatabaseHelper(this)).getWritableDatabase();
+		db = (new MyDatabaseHelper(this)).getWritableDatabase();
 
-		cursor = db.rawQuery("SELECT _id," + LINK + "," + WEBSITE + " FROM "+ TABLE_NAME +" ORDER BY " + WEBSITE, null);
+		cursor = db.rawQuery("SELECT _id," + LINK + "," + WEBSITE + "," + TYPE + " FROM "+ TABLE_NAME +" ORDER BY " + WEBSITE, null);
 
 		ListAdapter adapter = new SimpleCursorAdapter(this,
 				R.layout.activity_home_row, cursor, new String[] {WEBSITE}, new int[] {R.id.website});
@@ -176,6 +177,7 @@ public class HomeActivity extends ListActivity{
 
 		values.put(WEBSITE, wrapper.getWebsite());
 		values.put(LINK, wrapper.getLink());
+		values.put(TYPE, wrapper.getType());
 
 		db.insert(TABLE_NAME, null, values);
 
@@ -195,12 +197,14 @@ public class HomeActivity extends ListActivity{
 	class DialogWrapper {
 		EditText website = null;
 		EditText link = null;
+		EditText type = null;
 		View base = null;
 
 		DialogWrapper(View base) {
 			this.base = base;
 			website = (EditText) base.findViewById(R.id.website_field);
 			link = (EditText) base.findViewById(R.id.link_field);
+			type = (EditText) base.findViewById(R.id.type_field);
 		}
 
 		String getWebsite() {
@@ -209,6 +213,10 @@ public class HomeActivity extends ListActivity{
 
 		String getLink() {
 			return (getLinkField().getText().toString());
+		}
+		
+		String getType() {
+			return (getTypeField().getText().toString());
 		}
 
 
@@ -226,6 +234,14 @@ public class HomeActivity extends ListActivity{
 			}
 
 			return (link);
+		}
+		
+		private EditText getTypeField() {
+			if (type == null) {
+				type = (EditText) base.findViewById(R.id.type_field);
+			}
+
+			return (type);
 		}
 	}
 }

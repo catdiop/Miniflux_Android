@@ -42,8 +42,24 @@ public class ItemActivity extends Activity {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
-
+			break;
+		case R.id.action_favorites:
+			item.setIcon(R.drawable.ic_menu_star_yellow);
+			link=getIntent().getExtras().getString("link");
+			Uri.Builder builder1=new Uri.Builder();
+			builder1.scheme("http")
+			.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
+			.appendPath("Miniflux")
+			.appendPath("rest")
+			.appendPath("flux")
+			.appendPath("favorite")
+			.appendQueryParameter("link", link);
+			new HttpCall2(ItemActivity.this).execute(builder1.build().toString());
 			return true;
+		case R.id.action_refresh:
+			refresh();
+			break;
+		default:;	
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -57,7 +73,7 @@ public class ItemActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-
+		
 		link=getIntent().getExtras().getString("link");
 		Uri.Builder builder=new Uri.Builder();
 		builder.scheme("http")
@@ -67,7 +83,7 @@ public class ItemActivity extends Activity {
 		.appendPath("flux")
 		.appendPath("get")
 		.appendQueryParameter("link", link);
-
+		
 		ListView list = (ListView)findViewById(R.id.list_items);
 		list.setOnItemClickListener( new OnItemClickListener() {
 
@@ -232,8 +248,7 @@ public class ItemActivity extends Activity {
 		return null;
 	}
 
-	public void onClick(View v) {
-		if(v.getId()==R.id.action_refresh) {
+	public void refresh() {
 			String link=getIntent().getExtras().getString("link");
 			Uri.Builder builder=new Uri.Builder();
 			builder.scheme("http")
@@ -245,7 +260,5 @@ public class ItemActivity extends Activity {
 			.appendQueryParameter("link", link);
 
 			new HttpCall1(this).execute(builder.build().toString());
-
-		}
 	}
 }

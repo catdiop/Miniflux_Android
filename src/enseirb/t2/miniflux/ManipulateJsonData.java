@@ -26,4 +26,20 @@ public class ManipulateJsonData {
 		
 		return items;
 	}
+	
+	public static Flux getFlux(String jsonData) {
+		Flux f=new Flux();
+		
+		try{
+			ObjectMapper om=new ObjectMapper();
+			om.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			f=om.readValue(jsonData, Flux.class);
+			
+		}
+		catch(Exception e) {
+			System.out.println("Error: "+e.getMessage());
+		}
+		
+		return f;
+	}
 }

@@ -4,19 +4,21 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class ContactDatabaseHelper extends SQLiteOpenHelper {
+public class MyDatabaseHelper extends SQLiteOpenHelper {
 	
 	private static final String DATABASE_NAME="Db";
 	static final String LINK="link";
 	static final String WEBSITE="website";
+	static final String TYPE="type";
 	
 	public static final String TABLE_CREATE="CREATE TABLE allFluxName (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 			LINK +" TEXT NOT NULL, " +
-			WEBSITE +" TEXT NOT NULL);";
+			WEBSITE +" TEXT NOT NULL, "+
+			TYPE +" TEXT NOT NULL);";
 	
 	public static final String TABLE_DROP="DROP TABLE IF EXISTS allFluxName";
 	
-	public ContactDatabaseHelper(Context context) {
+	public MyDatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, 1);
 	}
 	
