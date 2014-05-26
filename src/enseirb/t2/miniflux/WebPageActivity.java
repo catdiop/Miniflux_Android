@@ -1,12 +1,13 @@
 package enseirb.t2.miniflux;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.projet.miniflux.R;
 
@@ -23,15 +24,10 @@ public class WebPageActivity extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		WebView wv=(WebView)findViewById(R.id.webview);
+		wv.setWebViewClient(new WebViewClient());
+		WebSettings webSettings = wv.getSettings();
+		webSettings.setJavaScriptEnabled(true);
 		wv.loadUrl(getIntent().getExtras().getString("link"));
-	}
-	
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		Intent intent=new Intent(WebPageActivity.this, ItemActivity.class);
-		intent.putExtra("link", getParentActivityIntent().getExtras().getString("link"));
-		startActivity(intent);
 	}
 
 	@Override

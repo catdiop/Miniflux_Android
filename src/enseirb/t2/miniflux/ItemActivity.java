@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -77,6 +78,7 @@ public class ItemActivity extends Activity {
 
 				TextView tv=(TextView)arg1.findViewById(R.id.uri);
 				TextView title=(TextView)arg1.findViewById(R.id.title);
+				title.setTypeface(Typeface.SERIF, Typeface.ITALIC);
 				Uri.Builder builder1=new Uri.Builder();
 				builder1.scheme("http")
 				.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
@@ -89,7 +91,7 @@ public class ItemActivity extends Activity {
 				new HttpCall2(ItemActivity.this).execute(builder1.build().toString());
 				Intent intent=new Intent(ItemActivity.this, WebPageActivity.class);
 				intent.putExtra("link", tv.getText());
-				//startActivity(intent);
+				startActivity(intent);
 			}
 		});
 
