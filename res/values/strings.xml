@@ -23,10 +23,21 @@
       <string name="action_refresh">refresh</string>
       <string name="website">Website</string>
       <string name="link">Rss File Url</string>
+      <string name="type">Type</string>
       <string name="register">Register</string>
        <string name="cancel">Cancel</string>
        
        <!-- activity items -->  
      <string name="items_label">Items</string>
      <string name="text_in_case_items_list_empty">No items</string>
+     
+     <string-array name="types_array">
+        <item>Broad</item>
+        <item>Music</item>
+        <item>Sport</item>
+        <item>Religion</item>
+        <item>Education</item>
+        <item>Other</item> 
+    </string-array>
+    
 </resources>

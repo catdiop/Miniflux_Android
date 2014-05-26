@@ -22,10 +22,12 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.projet.miniflux.R;
@@ -145,7 +147,7 @@ public class HomeActivity extends ListActivity{
 		LayoutInflater inflater = LayoutInflater.from(this);
 		View addView = inflater.inflate(R.layout.dialog_wrapper_add_feed,
 				null);
-
+		
 		final DialogWrapper wrapper = new DialogWrapper(addView);
 
 		new AlertDialog.Builder(this)

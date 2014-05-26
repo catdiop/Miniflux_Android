@@ -14,6 +14,12 @@
     <EditText android:id="@+id/link_field"
     android:hint="@string/link"
     android:singleLine="true"
+    android:inputType="textUri"
+    />
+    
+    <EditText android:id="@+id/type_field"
+    android:hint="@string/type"
+    android:singleLine="true"
     />
     
     </TableLayout>
