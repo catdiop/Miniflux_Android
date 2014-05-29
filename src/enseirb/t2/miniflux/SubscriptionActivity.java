@@ -31,7 +31,7 @@ import android.widget.EditText;
 import com.projet.miniflux.R;
 
 public class SubscriptionActivity extends Activity {
-	
+
 	private StringBuffer stringBuffer = new StringBuffer("");
 
 	private static final String url = "http://cdiop.rmorpheus.enseirb.fr/Miniflux/rest/user/register";
@@ -41,11 +41,11 @@ public class SubscriptionActivity extends Activity {
 	private EditText UserEditText;
 	private EditText PassEditText;
 	private EditText ConfirmEditText;
-	
+
 	@SuppressWarnings("unused")
 	private static final String LOG_TAG = "Log : ";
 
-	
+
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,60 +53,60 @@ public class SubscriptionActivity extends Activity {
 		setContentView(R.layout.subscription);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
-//		/*ADDED FOR AUTHENTIFICATION*/
-		
-				//initialisation de la progress bar
-				progressDialog = new ProgressDialog(this);
-				progressDialog.setMessage("Attendez...");
-				progressDialog.setIndeterminate(true);
-				progressDialog.setCancelable(false);
+		//		/*ADDED FOR AUTHENTIFICATION*/
 
-				//webView = (WebView) findViewById(R.id.website);
+		//initialisation de la progress bar
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setMessage("Attendez...");
+		progressDialog.setIndeterminate(true);
+		progressDialog.setCancelable(false);
 
-				// Récupération des éléments de la vue définis dans le xml
-				UserEditText = (EditText)findViewById(R.id.username);
-				PassEditText = (EditText)findViewById(R.id.password);
-				ConfirmEditText = (EditText)findViewById(R.id.confirm);
-				
-				Button button =(Button)findViewById(R.id.subscription);
-				
-				button.setOnClickListener(new View.OnClickListener() {
-					@SuppressLint("SetJavaScriptEnabled")
-					public void onClick(View v) {
-						
-						int usersize = UserEditText.getText().length();
-						int passsize = PassEditText.getText().length();
-						int confirmsize = ConfirmEditText.getText().length();
-						
-						String login = UserEditText.getText().toString();
-						String pass = PassEditText.getText().toString();
-						String confirm = ConfirmEditText.getText().toString();
-						
-						//si les  champs sont remplis
-						if( usersize>0 && passsize>0 && confirmsize>0 && pass.equals(confirm)==true )
-						{
-							progressDialog.show();
+		//webView = (WebView) findViewById(R.id.website);
 
-							//on appelle la fonction dologin qui va communiquer av le serveur
-							try {
-								doLogin(login,pass);
-							} catch (ClientProtocolException e) {
-								e.printStackTrace();
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-						}
-						
-						else if(pass.equals(confirm)==false && passsize>0){
-							createDialog("Erreur","Recommencez les deux mots de passe ne sont pas les mêmes");
-						}
-						else
-							createDialog("Erreur","Entrez votre login et mot de passe");
+		// Récupération des éléments de la vue définis dans le xml
+		UserEditText = (EditText)findViewById(R.id.username);
+		PassEditText = (EditText)findViewById(R.id.password);
+		ConfirmEditText = (EditText)findViewById(R.id.confirm);
+
+		Button button =(Button)findViewById(R.id.subscription);
+
+		button.setOnClickListener(new View.OnClickListener() {
+			@SuppressLint("SetJavaScriptEnabled")
+			public void onClick(View v) {
+
+				int usersize = UserEditText.getText().length();
+				int passsize = PassEditText.getText().length();
+				int confirmsize = ConfirmEditText.getText().length();
+
+				String login = UserEditText.getText().toString();
+				String pass = PassEditText.getText().toString();
+				String confirm = ConfirmEditText.getText().toString();
+
+				//si les  champs sont remplis
+				if( usersize>0 && passsize>0 && confirmsize>0 && pass.equals(confirm)==true )
+				{
+					progressDialog.show();
+
+					//on appelle la fonction dologin qui va communiquer av le serveur
+					try {
+						doLogin(login,pass);
+					} catch (ClientProtocolException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
 				}
-						);
 
-		
+				else if(pass.equals(confirm)==false && passsize>0){
+					createDialog("Erreur","Recommencez les deux mots de passe ne sont pas les mêmes");
+				}
+				else
+					createDialog("Erreur","Entrez votre login et mot de passe");
+			}
+		}
+				);
+
+
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class SubscriptionActivity extends Activity {
 			startActivity(i);
 		}
 	}
-	
+
 
 	// Other methods add by Sandrine
 	//---------------------------------------------------------------------------------------------------------------
@@ -164,7 +164,7 @@ public class SubscriptionActivity extends Activity {
 
 					//on crée la liste qui contient les paramètres
 					List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-					
+
 					//on rajoute les paramètres à la liste
 					nvps.add(new BasicNameValuePair("username", login));
 					nvps.add(new BasicNameValuePair("password", pass));
@@ -187,7 +187,7 @@ public class SubscriptionActivity extends Activity {
 						progressDialog.dismiss();
 						createDialog("Erreur", "Le pseudo est déjà utilisé");
 					}
-					
+
 				}
 				catch (Exception e) 
 				{ 

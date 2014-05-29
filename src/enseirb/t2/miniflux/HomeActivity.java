@@ -22,12 +22,10 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.projet.miniflux.R;
@@ -46,7 +44,7 @@ public class HomeActivity extends ListActivity{
 	static View view;
 	private SQLiteDatabase db = null;
 	private Cursor cursor = null;
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -59,6 +57,7 @@ public class HomeActivity extends ListActivity{
 		return super.onOptionsItemSelected(item);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -89,7 +88,7 @@ public class HomeActivity extends ListActivity{
 				Cursor c=db.rawQuery("select " + LINK + " from " + TABLE_NAME + " where " + WEBSITE + " LIKE ?", new String[]{website});
 				c.moveToFirst();
 				String link=c.getString(0);
-			    Intent intent=new Intent(HomeActivity.this, ItemActivity.class);
+				Intent intent=new Intent(HomeActivity.this, ItemActivity.class);
 				intent.putExtra("link", link);
 				startActivity(intent);
 			}
@@ -148,7 +147,7 @@ public class HomeActivity extends ListActivity{
 		LayoutInflater inflater = LayoutInflater.from(this);
 		View addView = inflater.inflate(R.layout.dialog_wrapper_add_feed,
 				null);
-		
+
 		final DialogWrapper wrapper = new DialogWrapper(addView);
 
 		new AlertDialog.Builder(this)
@@ -171,6 +170,7 @@ public class HomeActivity extends ListActivity{
 	}
 
 
+	@SuppressWarnings("deprecation")
 	private void processAdd(DialogWrapper wrapper) {
 
 		ContentValues values = new ContentValues();
@@ -214,7 +214,7 @@ public class HomeActivity extends ListActivity{
 		String getLink() {
 			return (getLinkField().getText().toString());
 		}
-		
+
 		String getType() {
 			return (getTypeField().getText().toString());
 		}
@@ -235,7 +235,7 @@ public class HomeActivity extends ListActivity{
 
 			return (link);
 		}
-		
+
 		private EditText getTypeField() {
 			if (type == null) {
 				type = (EditText) base.findViewById(R.id.type_field);

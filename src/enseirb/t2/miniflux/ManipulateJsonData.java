@@ -11,35 +11,19 @@ import org.codehaus.jackson.map.type.TypeFactory;
 public class ManipulateJsonData {
 	public static List<Item> getItems(String jsonData) {
 		List<Item> items=new LinkedList<Item>();
-		
+
 		try{
 			ObjectMapper om=new ObjectMapper();
 			om.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 			TypeFactory typeFactory = om.getTypeFactory();
-	        CollectionType collectionType = typeFactory.constructCollectionType(
-	                                            List.class, Item.class);
-	        items=om.readValue(jsonData, collectionType);
+			CollectionType collectionType = typeFactory.constructCollectionType(
+					List.class, Item.class);
+			items=om.readValue(jsonData, collectionType);
 		}
 		catch(Exception e) {
 			System.out.println("Error: "+e.getMessage());
 		}
-		
+
 		return items;
-	}
-	
-	public static Flux getFlux(String jsonData) {
-		Flux f=new Flux();
-		
-		try{
-			ObjectMapper om=new ObjectMapper();
-			om.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-			f=om.readValue(jsonData, Flux.class);
-			
-		}
-		catch(Exception e) {
-			System.out.println("Error: "+e.getMessage());
-		}
-		
-		return f;
 	}
 }

@@ -11,7 +11,7 @@ public class Item {
 	private String uri;
 	private Date publishedDate;
 	private boolean read;
-	
+
 	public Item() {
 		this.linkFlux=null;
 		this.title=null;
@@ -20,7 +20,7 @@ public class Item {
 		this.publishedDate=null;
 		this.read=false;
 	}
-	
+
 	public Item(String linkFlux, String title, String description, String uri, Date publishedDate) {
 		this.linkFlux=linkFlux;
 		this.title=title;
@@ -29,8 +29,8 @@ public class Item {
 		this.publishedDate=publishedDate;
 		this.read=false;
 	}
-	
-	
+
+
 	public boolean isRead() {
 		return read;
 	}
@@ -70,19 +70,19 @@ public class Item {
 	public String getTitle() {
 		return this.title;
 	}
-	
+
 	public String getDescription() {
 		return this.description;
 	}
-	
+
 	public String getUri() {
 		return this.uri;
 	}
-	
+
 	public Date getPublishedDate() {
 		return this.publishedDate;
 	}
-	
+
 	public String toString() {
 		String s=new String("");
 		s=s.concat("link: "+this.linkFlux+"\n");

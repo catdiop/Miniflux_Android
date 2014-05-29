@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 
 		setContentView(R.layout.activity_main);
 
-//		/*ADDED FOR AUTHENTIFICATION*/
+		//		/*ADDED FOR AUTHENTIFICATION*/
 
 		//initialisation de la progress bar
 		progressDialog = new ProgressDialog(this);
@@ -111,17 +111,17 @@ public class MainActivity extends Activity {
 				else
 					createDialog("Erreur","Entrez votre login et mot de passe");
 			}
-			
+
 		}
 				);
 
 		//le bouton logout pour sortir de l'application
-//		Button button1 =(Button)findViewById(R.id.logout);
-//		button1.setOnClickListener(new View.OnClickListener() {
-//			public void onClick(View v) {
-//				quit(false,null);	
-//			}
-//		}); 
+		//		Button button1 =(Button)findViewById(R.id.logout);
+		//		button1.setOnClickListener(new View.OnClickListener() {
+		//			public void onClick(View v) {
+		//				quit(false,null);	
+		//			}
+		//		}); 
 
 
 	}
@@ -226,7 +226,7 @@ public class MainActivity extends Activity {
 
 					//on crée la liste qui contient les paramètres
 					List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-	
+
 					//on rajoute les paramètres à la liste
 					nvps.add(new BasicNameValuePair("username", login));
 					nvps.add(new BasicNameValuePair("password", pass));
@@ -249,7 +249,7 @@ public class MainActivity extends Activity {
 						progressDialog.dismiss();
 						createDialog("Erreur", "Désolé, vous n'êtes pas encore enregistré");
 					}
-					
+
 				}
 				catch (Exception e) 
 				{ 

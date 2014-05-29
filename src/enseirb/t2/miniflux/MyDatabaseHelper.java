@@ -5,24 +5,24 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
-	
+
 	private static final String DATABASE_NAME="Db";
 	static final String LINK="link";
 	static final String WEBSITE="website";
 	static final String TYPE="type";
 	static final String FAVORITE="favorite";
-	
+
 	public static final String TABLE_CREATE="CREATE TABLE allFluxName (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 			LINK +" TEXT NOT NULL, " +
 			WEBSITE +" TEXT NOT NULL, "+
 			TYPE +" TEXT NOT NULL);";
-	
+
 	public static final String TABLE_DROP="DROP TABLE IF EXISTS allFluxName";
-	
+
 	public MyDatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, 1);
 	}
-	
+
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub

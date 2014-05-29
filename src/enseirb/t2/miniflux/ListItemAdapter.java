@@ -31,17 +31,17 @@ public class ListItemAdapter extends ArrayAdapter<Item>{
 		View row=inflater.inflate(R.layout.activity_item_row, null);
 		Item item=items.get(position);
 		if(item!=null) {
-		TextView title=(TextView)row.findViewById(R.id.title);
-		title.setText(item.getTitle());
-		
-		TextView description=(TextView)row.findViewById(R.id.description);
-		description.setText(item.getDescription());
-		
-		TextView uri=(TextView)row.findViewById(R.id.uri);
-		uri.setText(item.getUri());
-		
-		if(item.isRead()==true) {
-			title.setTypeface(Typeface.SERIF, Typeface.ITALIC);
+			TextView title=(TextView)row.findViewById(R.id.title);
+			title.setText(item.getTitle());
+
+			TextView description=(TextView)row.findViewById(R.id.description);
+			description.setText(item.getDescription());
+
+			TextView uri=(TextView)row.findViewById(R.id.uri);
+			uri.setText(item.getUri());
+
+			if(item.isRead()==true) {
+				title.setTypeface(Typeface.SERIF, Typeface.ITALIC);
 			}
 		}
 		return row;

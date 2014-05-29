@@ -8,9 +8,6 @@
 package com.projet.miniflux;
 
 public final class R {
-    public static final class array {
-        public static final int types_array=0x7f070000;
-    }
     public static final class attr {
     }
     public static final class dimen {
@@ -30,29 +27,29 @@ public final class R {
         public static final int line_divider=0x7f020007;
     }
     public static final class id {
-        public static final int action_favorites=0x7f0a0014;
-        public static final int action_refresh=0x7f0a0015;
-        public static final int action_settings=0x7f0a0013;
-        public static final int add_feed=0x7f0a0012;
-        public static final int confirm=0x7f0a000e;
-        public static final int description=0x7f0a0003;
-        public static final int line=0x7f0a0007;
-        public static final int link_field=0x7f0a000c;
-        public static final int list_items=0x7f0a0001;
-        public static final int logout=0x7f0a0016;
-        public static final int password=0x7f0a0009;
-        public static final int sign_in=0x7f0a000a;
-        public static final int sign_up=0x7f0a0006;
-        public static final int subscription=0x7f0a000f;
-        public static final int text=0x7f0a0005;
-        public static final int title=0x7f0a0002;
-        public static final int type_field=0x7f0a000d;
-        public static final int uri=0x7f0a0004;
-        public static final int username=0x7f0a0008;
-        public static final int videoView=0x7f0a0010;
-        public static final int website=0x7f0a0000;
-        public static final int website_field=0x7f0a000b;
-        public static final int webview=0x7f0a0011;
+        public static final int action_favorites=0x7f090014;
+        public static final int action_refresh=0x7f090015;
+        public static final int action_settings=0x7f090013;
+        public static final int add_feed=0x7f090012;
+        public static final int confirm=0x7f09000e;
+        public static final int description=0x7f090003;
+        public static final int line=0x7f090007;
+        public static final int link_field=0x7f09000c;
+        public static final int list_items=0x7f090001;
+        public static final int logout=0x7f090016;
+        public static final int password=0x7f090009;
+        public static final int sign_in=0x7f09000a;
+        public static final int sign_up=0x7f090006;
+        public static final int subscription=0x7f09000f;
+        public static final int text=0x7f090005;
+        public static final int title=0x7f090002;
+        public static final int type_field=0x7f09000d;
+        public static final int uri=0x7f090004;
+        public static final int username=0x7f090008;
+        public static final int videoView=0x7f090010;
+        public static final int website=0x7f090000;
+        public static final int website_field=0x7f09000b;
+        public static final int webview=0x7f090011;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
@@ -66,43 +63,43 @@ public final class R {
         public static final int webpage_activity=0x7f030008;
     }
     public static final class menu {
-        public static final int activity_home=0x7f090000;
-        public static final int activity_items=0x7f090001;
+        public static final int activity_home=0x7f080000;
+        public static final int activity_items=0x7f080001;
     }
     public static final class raw {
         public static final int video=0x7f040000;
     }
     public static final class string {
         public static final int action_favorites=0x7f060002;
-        public static final int action_refresh=0x7f06000e;
+        public static final int action_refresh=0x7f06000f;
         public static final int action_settings=0x7f060001;
-        public static final int add_feed=0x7f06000d;
+        public static final int add_feed=0x7f06000e;
         public static final int app_name=0x7f060000;
-        public static final int cancel=0x7f060013;
+        public static final int cancel=0x7f060014;
         public static final int confirm=0x7f06000a;
         /**  activity_home 
          */
-        public static final int home_label=0x7f06000b;
+        public static final int home_label=0x7f06000c;
         /**  activity items 
          */
-        public static final int items_label=0x7f060014;
-        public static final int link=0x7f060010;
+        public static final int items_label=0x7f060015;
+        public static final int link=0x7f060011;
         public static final int logout=0x7f060003;
         public static final int password=0x7f060007;
-        public static final int register=0x7f060012;
+        public static final int register=0x7f060013;
         /**  activity_main 
          */
         public static final int sign_in=0x7f060004;
         public static final int sign_up=0x7f060005;
-        /**   DisplayMessageActivity
-  <string name="edit_message">Edit</string>  
+        /**   SubscriptionActivity
          */
         public static final int subscription=0x7f060009;
-        public static final int text_in_case_feed_list_empty=0x7f06000c;
-        public static final int text_in_case_items_list_empty=0x7f060015;
-        public static final int type=0x7f060011;
+        public static final int subscription_label=0x7f06000b;
+        public static final int text_in_case_feed_list_empty=0x7f06000d;
+        public static final int text_in_case_items_list_empty=0x7f060016;
+        public static final int type=0x7f060012;
         public static final int username=0x7f060006;
-        public static final int website=0x7f06000f;
+        public static final int website=0x7f060010;
         public static final int webview=0x7f060008;
     }
     public static final class style {
@@ -127,10 +124,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f070001;
     }
 }

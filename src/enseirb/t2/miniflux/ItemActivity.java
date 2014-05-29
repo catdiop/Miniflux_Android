@@ -76,7 +76,7 @@ public class ItemActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		link=getIntent().getExtras().getString("link");
 		Uri.Builder builder=new Uri.Builder();
 		builder.scheme("http")
@@ -86,7 +86,7 @@ public class ItemActivity extends Activity {
 		.appendPath("flux")
 		.appendPath("get")
 		.appendQueryParameter("link", link);
-		
+
 		ListView list = (ListView)findViewById(R.id.list_items);
 		list.setOnItemClickListener( new OnItemClickListener() {
 
@@ -146,7 +146,7 @@ public class ItemActivity extends Activity {
 			}
 
 		});
-		
+
 		new HttpCall(this).execute(builder.build().toString());
 
 	}
@@ -162,6 +162,7 @@ public class ItemActivity extends Activity {
 
 	private class HttpCall extends AsyncTask<String, Void, String> {
 		protected ProgressDialog progressDialog;
+		@SuppressWarnings("unused")
 		protected Activity activity;
 
 		public HttpCall(Activity activity) {
@@ -219,7 +220,7 @@ public class ItemActivity extends Activity {
 			}
 			listItems=(ListView)findViewById(R.id.list_items);
 			List<Item> items=ManipulateJsonData.getItems(result);
-			itemsToShow.addAll(items);
+			itemsToShow.addAll(0,items);
 			adapter=new ListItemAdapter(ItemActivity.this, itemsToShow);
 			listItems.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
@@ -253,7 +254,7 @@ public class ItemActivity extends Activity {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 		}
-		
+
 		@Override
 		protected void onPreExecute() {
 			// TODO Auto-generated method stub
@@ -282,7 +283,7 @@ public class ItemActivity extends Activity {
 		}
 	}
 
-	
+
 	private String readStream(InputStream in) {
 		BufferedReader reader = null;
 		try {
@@ -308,19 +309,19 @@ public class ItemActivity extends Activity {
 	}
 
 	public void refresh() {
-			String link=getIntent().getExtras().getString("link");
-			Uri.Builder builder=new Uri.Builder();
-			builder.scheme("http")
-			.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
-			.appendPath("Miniflux")
-			.appendPath("rest")
-			.appendPath("flux")
-			.appendPath("refresh")
-			.appendQueryParameter("link", link);
+		String link=getIntent().getExtras().getString("link");
+		Uri.Builder builder=new Uri.Builder();
+		builder.scheme("http")
+		.authority("cdiop.rmorpheus.enseirb-matmeca.fr")
+		.appendPath("Miniflux")
+		.appendPath("rest")
+		.appendPath("flux")
+		.appendPath("refresh")
+		.appendQueryParameter("link", link);
 
-			new HttpCall1(this).execute(builder.build().toString());
+		new HttpCall1(this).execute(builder.build().toString());
 	}
-	
+
 	public void setFavorite(String link, String title) {
 		Uri.Builder builder=new Uri.Builder();
 		builder.scheme("http")
@@ -333,5 +334,5 @@ public class ItemActivity extends Activity {
 		.appendQueryParameter("title", title);
 
 		new HttpCall1(this).execute(builder.build().toString());
-}
+	}
 }

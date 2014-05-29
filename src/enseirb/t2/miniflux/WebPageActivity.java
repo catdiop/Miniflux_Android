@@ -1,5 +1,6 @@
 package enseirb.t2.miniflux;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -13,16 +14,17 @@ import com.projet.miniflux.R;
 
 public class WebPageActivity extends Activity {
 
+	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.webpage_activity);
-		
+
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		WebView wv=(WebView)findViewById(R.id.webview);
 		wv.setWebViewClient(new WebViewClient());
 		WebSettings webSettings = wv.getSettings();
@@ -34,7 +36,7 @@ public class WebPageActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
+			NavUtils.navigateUpFromSameTask(getParent());
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
